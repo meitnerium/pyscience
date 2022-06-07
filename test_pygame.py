@@ -131,10 +131,10 @@ while running:
 			RUNNING = False
 		if event.type == pygame.KEYDOWN:
 			if event.key == pygame.K_UP:
-				doh += 0.1
+				doh += 0.05
 				print("doh="+str(doh))
 			if event.key == pygame.K_DOWN:
-				doh -= 0.1
+				doh -= 0.05
 				print("doh="+str(doh))
 			if event.key == pygame.K_LEFT:
 				dra += 5*np.pi/180
