@@ -7,8 +7,8 @@ import matplotlib.backends.backend_agg as agg
 from pygame.locals import *
 import pylab
 from pyscf import scf
-from pyscf import gto
-matplotlib.use("Agg")
+from pyscf import gto, cc
+
 
 #class pes():
 #	def __init__(self,dim):
@@ -65,13 +65,17 @@ def get_pot(roh,ra):
 	h1_pos[1] = -dhy
 	h2_pos[0] = +dhx
 	h2_pos[1] = -dhy
-	mol_h2o = gto.M(atom = 'O 0 0 0; H '+str(h1_pos[0])+' '+str(h1_pos[1])+' 0; H '+str(h2_pos[0])+' '+str(h2_pos[1])+' 0', basis = 'ccpvdz')
+	mol_h2o = gto.M(atom = 'O 0 0 0; H '+str(h1_pos[0])+' '+str(h1_pos[1])+' 0; H '+str(h2_pos[0])+' '+str(h2_pos[1])+' 0', basis = 'augccpvdzdk')
 	mol_h2o.build()
 	rhf_h2o = scf.RHF(mol_h2o)
 	e_h2o = rhf_h2o.kernel()
 	print(e_h2o)
+	#mycc = cc.CCSD(rhf_h2o).run()
+	#print('CCSD total energy', mycc.e_tot)
+	#et = mycc.ccsd_t()
+	#print('CCSD(T) total energy', mycc.e_tot + et)
 
-	return e_h2o
+	return e_h2o #mycc.e_tot + et
 
 # 25 pixel (size of oxygen) is 0.6 A
 pixeltoang = 0.6/25
