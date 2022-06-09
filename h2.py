@@ -50,9 +50,13 @@ def add_plot(valuer,valuepot,rval,e,der):
 	ax.plot(rval,e,"or")
 	if showder:
 		ax.plot([rval-dx,rval,rval+dx],[e-der*dx,e,e+der*dx],"-,r")
-		dxtext = -5*der
+		if der < 0:
+			dxtext = -5*der
+		else:
+			dxtext = -8*der
+
 		print("dxtext= "+str(dxtext))
-		plt.text(rval+dxtext,e,r"$\vec{F}=-\frac{d}{dr}V$", color="red",size="x-large")
+		plt.text(1.95,-0.1015,r"$\vec{F}=-\frac{d}{dr}V$", color="red",fontsize=24)
 	plt.xlabel("$r(a.u.)$")
 	plt.ylabel("$E(a.u.)$")
 
