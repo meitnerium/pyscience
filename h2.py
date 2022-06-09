@@ -50,6 +50,9 @@ def add_plot(valuer,valuepot,rval,e,der):
 	ax.plot(rval,e,"or")
 	if showder:
 		ax.plot([rval-dx,rval,rval+dx],[e-der*dx,e,e+der*dx],"-,r")
+		dxtext = -5*der
+		print("dxtext= "+str(dxtext))
+		plt.text(rval+dxtext,e,r"$\vec{F}=-\frac{d}{dr}V$", color="red",size="x-large")
 	plt.xlabel("$r(a.u.)$")
 	plt.ylabel("$E(a.u.)$")
 
@@ -170,7 +173,6 @@ def draw_h2(center,roh):
 					     (h1_pos[0]+longeur-pointe, h1_pos[1])))
 		arrow2 = pygame.draw.polygon(screen, (0, 255, 0), ((h2_pos[0], h2_pos[1]), (h2_pos[0]-longeur+pointe, h2_pos[1]), (h2_pos[0]-longeur, h2_pos[1]-pointe), (h2_pos[0]-longeur, h2_pos[1]+pointe),
 					     (h2_pos[0]-longeur+pointe, h2_pos[1])))
-
 
 	if showspring:
 		# test to draw a spring
